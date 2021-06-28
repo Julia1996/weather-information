@@ -1,0 +1,30 @@
+.weather-card {
+    margin-bottom: 2rem;
+}
+
+.weather-card__title {
+    text-align: center;
+}
+
+.weather-card__info {
+    width: 100%;
+}
+
+.weather-card__info td:last-child {
+    text-align: right;
+}
+
+.filter {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.filter__label {
+    margin: 0 2rem;
+}
+
+@media (min-width: 1200px) {
+    .filter__element {
+        display: inline-block;
+    }
+}
