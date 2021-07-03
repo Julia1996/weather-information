@@ -1,5 +1,6 @@
 import cities from './data.json'
 import { WeatherEntity, LinkAccumulator, DaysParameters, CityPatameters } from '../../types'
+import { Day } from './models/day'
 
 export const resolvers = {
   Query: {
@@ -10,11 +11,11 @@ export const resolvers = {
       }, {} as LinkAccumulator))
     },
     cityName: (_: any, args: CityPatameters) => {
-      const stationId = parseInt(args.id)
+      const stationId = parseInt(args.stationId)
       return cities.find(city => city.station_id === stationId)?.place_name
     },
     days: (_: any, args: DaysParameters) => {
-      const cityId = parseInt(args.city)
+      const stationId = parseInt(args.stationId)
       let startDate: number | undefined
       let endDate: number | undefined
       if (args.startDate) {
@@ -23,17 +24,22 @@ export const resolvers = {
       if (args.endDate) {
         endDate = (new Date(args.endDate)).getTime()
       }
-      return cities.filter(city => {
-        const cityDate = (new Date(city.datetime)).getTime()
-        if (startDate && !endDate) {
-          return city.station_id === cityId && cityDate >= startDate
-        } else if (!startDate && endDate) {
-          return city.station_id === cityId && cityDate <= endDate
-        } else if (startDate && endDate) {
-          return city.station_id === cityId && cityDate >= startDate && cityDate <= endDate
-        }
-        return city.station_id === cityId
-      })
+      return cities
+        .filter(city => {
+          const cityDate = (new Date(city.datetime)).getTime()
+          if (startDate && !endDate) {
+            return city.station_id === stationId && cityDate >= startDate
+          } else if (!startDate && endDate) {
+            return city.station_id === stationId && cityDate <= endDate
+          } else if (startDate && endDate) {
+            return city.station_id === stationId && cityDate >= startDate && cityDate <= endDate
+          }
+          return city.station_id === stationId
+        })
+        .map(day => {
+          const dayModel = new Day(day)
+          return dayModel.getResolvers()
+        })
     }
   }
 }

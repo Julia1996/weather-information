@@ -23,6 +23,10 @@
     margin: 0 2rem;
 }
 
+.no-results {
+    text-align: center;
+}
+
 @media (min-width: 1200px) {
     .filter__element {
         display: inline-block;

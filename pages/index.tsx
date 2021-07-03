@@ -20,8 +20,8 @@ export default function Home() {
     return cities.filter(city => regExp.test(city.name))
   }, [search, cities])
 
-  if (loading) return <Error/>
-  if (error) return <Loading/>
+  if (loading) return <Loading/>
+  if (error) return <Error/>
 
   return (
     <div className={styles.cities}>

@@ -1,11 +1,9 @@
 import { gql } from '@apollo/client'
 
 export const GET_DAYS = gql`
-  query GetCities($city: ID, $startDate: String, $endDate: String) {
-    cityName(id: $city)
-    days(city: $city, startDate: $startDate, endDate: $endDate) {
-      station_id
-      place_name
+  query GetCities($stationId: ID, $startDate: String, $endDate: String) {
+    cityName(stationId: $stationId)
+    days(stationId: $stationId, startDate: $startDate, endDate: $endDate) {
       datetime
       temperature_max
       temperature_min

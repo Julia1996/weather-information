@@ -20,8 +20,8 @@ const typeDefs = gql`
   
   type Query {
     cities: [CityLink]
-    cityName(id: ID): String
-    days(city: ID, startDate: String, endDate: String): [WeatherEntity]
+    cityName(stationId: ID): String
+    days(stationId: ID, startDate: String, endDate: String): [WeatherEntity]
   }
 `;
 

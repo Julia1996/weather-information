@@ -1,10 +1,10 @@
 import { useQuery } from '@apollo/client'
 import { GET_DAYS } from '../queries/getDays'
 
-export const useDays = (city: number, startDate?: Date | null, endDate?: Date | null) =>
+export const useDays = (stationId: number, startDate?: Date | null, endDate?: Date | null) =>
   useQuery(GET_DAYS, {
     variables: {
-      city,
+      stationId,
       startDate: startDate?.toISOString(),
       endDate: endDate?.toISOString(),
     }

@@ -20,11 +20,24 @@ export type LinkAccumulator = {
 }
 
 export type DaysParameters = {
-  city: string
+  stationId: string
   startDate?: string | null
   endDate?: string | null
 }
 
 export type CityPatameters = {
-  id: string
+  stationId: string
+}
+
+export type DayResolvers = {
+  datetime: () => string
+  temperature_max: () => string
+  temperature_min: () => string
+  precipitation_probability: () => string
+  precipitation_mm: () => string
+}
+
+export interface DayInterface {
+  day: WeatherEntity
+  getResolvers(): DayResolvers
 }

@@ -20,8 +20,8 @@ export default function City() {
   const days: WeatherEntity[] | null = data?.days
   const cityName: string | null = data?.cityName
 
-  if (loading) return <Error/>
-  if (error) return <Loading/>
+  if (error) return <Error/>
+  if (loading) return <Loading/>
 
   return (
     <>
@@ -85,7 +85,7 @@ export default function City() {
           </Row>
         </Container>
       ) : (
-        <p>No data</p>
+        <p className={styles['no-results']}>No data</p>
       )}
     </>
   )
